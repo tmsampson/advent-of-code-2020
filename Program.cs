@@ -29,7 +29,7 @@ namespace AdventOfCode2020
 		// puzzle list
 		static List<Action> Puzzles = new List<Action>()
 		{
-			Puzzle01
+			Puzzle01.Run
 		};
 	}
 }

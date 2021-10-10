@@ -29,7 +29,13 @@
 				"1"
 			],
 			"group": "build",
-			"problemMatcher": "$msCompile"
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"showReuseMessage": false,
+				"clear": true
+			}
 		}
 	]
 }
