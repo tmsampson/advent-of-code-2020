@@ -8,28 +8,28 @@ namespace AdventOfCode2020
 	{
 		static void Main(string[] args)
 		{
-			// Select challenge
-			Action challenge = null;
+			// Select puzzle
+			Action puzzle = null;
 			if(args.Length == 0)
 			{
-				Console.WriteLine("No arguments passed, running last challenge");
-				challenge = Challenges.Last();
+				Console.WriteLine("No arguments passed, running last puzzle");
+				puzzle = Puzzles.Last();
 			}
-			else if(int.TryParse(args[0], out int challengeIndex) && challengeIndex > 0 && challengeIndex <= Challenges.Count)
+			else if(int.TryParse(args[0], out int puzzleIndex) && puzzleIndex > 0 && puzzleIndex <= Puzzles.Count)
 			{
-				Console.WriteLine($"Running challenge #{challengeIndex}");
-				challenge = Challenges[challengeIndex - 1];
+				Console.WriteLine($"Running puzzle #{puzzleIndex}");
+				puzzle = Puzzles[puzzleIndex - 1];
 			}
 
-			// Run challenge
+			// Run puzzle
 			Console.WriteLine("----------------------------------------------------");
-			challenge();
+			puzzle();
 		}
 
-		// Challenge list
-		static List<Action> Challenges = new List<Action>()
+		// puzzle list
+		static List<Action> Puzzles = new List<Action>()
 		{
-			Challenge01
+			Puzzle01
 		};
 	}
 }

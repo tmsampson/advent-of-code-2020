@@ -6,9 +6,9 @@ namespace AdventOfCode2020
 {
 	partial class Program
 	{
-		static void Challenge01()
+		static void Puzzle01()
 		{
-			Console.WriteLine("Challenge #1 Executed");
+			
 		}
 	}
 }
