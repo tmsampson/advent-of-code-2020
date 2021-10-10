@@ -1,5 +1,11 @@
-// Find the two entries that sum to 2020 and then multiply those two numbers together
+// ------------------------------------------------------------------------------------
+// Day 1: Report Repair - Part 1
+// ------------------------------------------------------------------------------------
 // https://adventofcode.com/2020/day/1
+// ------------------------------------------------------------------------------------
+// Find the two entries in the input list that sum to 2020 and then multiply those
+// two numbers together.
+// ------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -15,7 +21,7 @@ namespace AdventOfCode2020
 			public static string Input = "puzzles/puzzle-01-input.txt";
 			public static int TargetResult = 2020;
 		}
-		
+
 		public class Answer : IPuzzleAnswer
 		{
 			public int Num0 = -1, Num1 = -1;

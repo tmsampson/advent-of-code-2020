@@ -1,5 +1,11 @@
-// Find the three entries that sum to 2020 and then multiply those three numbers together
+// ------------------------------------------------------------------------------------
+// Day 1: Report Repair - Part 2
+// ------------------------------------------------------------------------------------
 // https://adventofcode.com/2020/day/1#part2
+// ------------------------------------------------------------------------------------
+// Find the three entries in the input list that sum to 2020 and then multiply those
+// three numbers together.
+// ------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
