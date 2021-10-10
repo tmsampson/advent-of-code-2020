@@ -8,14 +8,18 @@ using System.Linq;
 
 namespace AdventOfCode2020
 {
-	class Puzzle01
+	class Puzzle01 : IPuzzle
 	{
 		private static string Input = "puzzles/puzzle-01-input.txt";
-		public static void Run()
+
+		public IPuzzleResults Run()
 		{
-			Helpers.Run("Naive", Solve_Naive);
-			Helpers.Run("HashSet Lookup", Solve_HashSet);
-			Helpers.Run("Array Lookup", Solve_Array);
+			return new PuzzleResults<int>()
+			{
+				Framework.Run("Naive", Solve_Naive),
+				Framework.Run("Array Lookup", Solve_Array),
+				Framework.Run("HashSet Lookup", Solve_HashSet)
+			};
 		}
 
 		private static int Solve_Naive()
@@ -41,6 +45,21 @@ namespace AdventOfCode2020
 			return -1;
 		}
 
+		private static int Solve_Array()
+		{
+			string[] lines = File.ReadAllLines(Input);
+			int[] numbers = lines.Select(int.Parse).ToArray();
+			foreach(int number in numbers)
+			{
+				int other = 2020 - number;
+				if(numbers.Contains(other))
+				{
+					return number * other;
+				}
+			}
+			return -1;
+		}
+
 		private static int Solve_HashSet()
 		{
 			string[] lines = File.ReadAllLines(Input);
@@ -50,21 +69,6 @@ namespace AdventOfCode2020
 			{
 				int other = 2020 - number;
 				if(numbersLookup.Contains(other))
-				{
-					return number * other;
-				}
-			}
-			return -1;
-		}
-
-		private static int Solve_Array()
-		{
-			string[] lines = File.ReadAllLines(Input);
-			int[] numbers = lines.Select(int.Parse).ToArray();
-			foreach(int number in numbers)
-			{
-				int other = 2020 - number;
-				if(numbers.Contains(other))
 				{
 					return number * other;
 				}
