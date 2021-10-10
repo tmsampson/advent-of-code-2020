@@ -11,6 +11,11 @@ namespace AdventOfCode2020
 	class Puzzle01 : IPuzzle
 	{
 		private static string Input = "puzzles/puzzle-01-input.txt";
+		private static class Constants
+		{
+			public static int TargetResult = 2020;
+			public static int InvalidResult = -1;
+		}
 
 		public IPuzzleResults Run()
 		{
@@ -36,7 +41,7 @@ namespace AdventOfCode2020
 					if(i != j)
 					{
 						int other = numbers[j];
-						if((number + other) == 2020)
+						if((number + other) == Constants.TargetResult)
 						{
 							return number * other;
 						}
@@ -44,7 +49,7 @@ namespace AdventOfCode2020
 				}
 
 			}
-			return -1;
+			return Constants.InvalidResult;
 		}
 
 		private static int Solve_Array()
@@ -53,13 +58,13 @@ namespace AdventOfCode2020
 			int[] numbers = lines.Select(int.Parse).ToArray();
 			foreach(int number in numbers)
 			{
-				int other = 2020 - number;
+				int other = Constants.TargetResult - number;
 				if(number != other && numbers.Contains(other))
 				{
 					return number * other;
 				}
 			}
-			return -1;
+			return Constants.InvalidResult;
 		}
 
 		private static int Solve_HashSet()
@@ -69,13 +74,13 @@ namespace AdventOfCode2020
 			HashSet<int> numbersLookup = lines.Select(int.Parse).ToHashSet();
 			foreach(int number in numbers)
 			{
-				int other = 2020 - number;
+				int other = Constants.TargetResult - number;
 				if(numbersLookup.Contains(other))
 				{
 					return number * other;
 				}
 			}
-			return -1;
+			return Constants.InvalidResult;
 		}
 	}
 }

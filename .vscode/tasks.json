@@ -21,12 +21,28 @@
 			"problemMatcher": "$msCompile"
 		},
 		{
-			"label": "Run Challenge #01",
+			"label": "Run Puzzle #01",
 			"command": "dotnet",
 			"type": "shell",
 			"args": [
 				"run",
 				"1"
+			],
+			"group": "build",
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"showReuseMessage": false,
+				"clear": true
+			}
+		},
+		{
+			"label": "Run Latest Puzzle",
+			"command": "dotnet",
+			"type": "shell",
+			"args": [
+				"run",
 			],
 			"group": "build",
 			"problemMatcher": "$msCompile",

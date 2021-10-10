@@ -11,14 +11,15 @@ namespace AdventOfCode2020
 			// Puzzle list
 			var puzzles = new List<IPuzzle>()
 			{
-				new Puzzle01()
+				new Puzzle01(),
+				new Puzzle02()
 			};
 
 			// Select puzzle
 			IPuzzle puzzle = null;
 			if(args.Length == 0)
 			{
-				Console.WriteLine("No arguments passed, running last puzzle");
+				Console.WriteLine("No arguments passed, running latest puzzle");
 				puzzle = puzzles.Last();
 			}
 			else if(int.TryParse(args[0], out int puzzleIndex) && puzzleIndex > 0 && puzzleIndex <= puzzles.Count)
