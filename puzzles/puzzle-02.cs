@@ -15,6 +15,7 @@ namespace AdventOfCode2020
 			public static string Input = "puzzles/puzzle-01-input.txt";
 			public static int TargetResult = 2020;
 		}
+
 		public class Answer : IPuzzleAnswer
 		{
 			public int Num0 = -1, Num1 = -1, Num2 = -1;
