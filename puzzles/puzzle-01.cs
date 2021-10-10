@@ -13,29 +13,9 @@ namespace AdventOfCode2020
 		private static string Input = "puzzles/puzzle-01-input.txt";
 		public static void Run()
 		{
-			// Naive
-			{
-				string label = "Naive";
-				int answer = Solve_Naive();
-				Console.WriteLine($"{label}: Answer = {answer}");
-				Helpers.Profile(label, () => { Solve_Naive(); });
-			}
-
-			// HashSet lookup
-			{
-				string label = "HashSet Lookup";
-				int answer = Solve_HashSet();
-				Console.WriteLine($"{label}: Answer = {answer}");
-				Helpers.Profile(label, () => { Solve_HashSet(); });
-			}
-
-			// Array lookup
-			{
-				string label = "Array Lookup";
-				int answer = Solve_Array();
-				Console.WriteLine($"{label}: Answer = {answer}");
-				Helpers.Profile(label, () => { Solve_Array(); });
-			}
+			Helpers.Run("Naive", Solve_Naive);
+			Helpers.Run("HashSet Lookup", Solve_HashSet);
+			Helpers.Run("Array Lookup", Solve_Array);
 		}
 
 		private static int Solve_Naive()
@@ -47,10 +27,13 @@ namespace AdventOfCode2020
 				int number = numbers[i];
 				for(int j = 0; j < numbers.Length; ++j)
 				{
-					int other = numbers[j];
-					if(i != j && ((number + other) == 2020))
+					if(i != j)
 					{
-						return number * other;
+						int other = numbers[j];
+						if((number + other) == 2020)
+						{
+							return number * other;
+						}
 					}
 				}
 
