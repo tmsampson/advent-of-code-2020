@@ -27,7 +27,8 @@ namespace AdventOfCode2020
 		{
 			return new PuzzleResults()
 			{
-				// NOTE: Unlike previous puzzle, HashSet now comes out on top as way more lookup operations are being performed
+				// NOTE: Unlike previous puzzle, HashSet now comes out on top as way more
+				//       lookup operations are being performed
 				Framework.Run("Array lookup", Solve_Array),
 				Framework.Run("HashSet lookup", Solve_HashSet),
 			};
