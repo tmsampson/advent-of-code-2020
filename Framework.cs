@@ -23,7 +23,7 @@ namespace AdventOfCode2020
 		{
 			string averageTicksString = AverageTicks.ToString();
 			string averageTicksStringPadded = tickPadding > 0? averageTicksString.PadLeft(tickPadding) : averageTicksString;
-			return $" | {averageTicksStringPadded} ticks | {AverageMs:0.######} ms (results averaged over {IterationCount} iterations)";
+			return $"{averageTicksStringPadded} ticks | {AverageMs:0.######} ms (results averaged over {IterationCount} iterations)";
 		}
 	}
 
@@ -49,7 +49,7 @@ namespace AdventOfCode2020
 			result += $"Answer = {Answer}";
 			if(ProfileInfo != null)
 			{
-				result += ProfileInfo.ToString(tickPadding);
+				result += " | " + ProfileInfo.ToString(tickPadding);
 			}
 			return result;
 		}

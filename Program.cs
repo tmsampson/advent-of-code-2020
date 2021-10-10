@@ -23,7 +23,7 @@ namespace AdventOfCode2020
 			}
 			else if(int.TryParse(args[0], out int puzzleIndex) && puzzleIndex > 0 && puzzleIndex <= puzzles.Count)
 			{
-				Console.WriteLine($"Running puzzle #{puzzleIndex}");
+				Console.WriteLine($"Running puzzle #{puzzleIndex:00}");
 				puzzle = puzzles[puzzleIndex - 1];
 			}
 
