@@ -28,11 +28,14 @@ namespace AdventOfCode2020
 			}
 
 			// Run puzzle
-			Console.WriteLine("------------------------------------------------------------------------------------------------");
-			IPuzzleResults result = puzzle.Run();
+			if(puzzle != null)
+			{
+				Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+				IPuzzleResults result = puzzle.Run();
 
-			// Print results
-			result.Print();
+				// Print results
+				result.Print();
+			}
 		}
 	}
 }
