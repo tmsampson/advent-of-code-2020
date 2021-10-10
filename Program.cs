@@ -16,21 +16,23 @@ namespace AdventOfCode2020
 			};
 
 			// Select puzzle
-			IPuzzle puzzle = null;
+			int puzzleNumber = -1;
 			if(args.Length == 0)
 			{
 				Console.WriteLine("No arguments passed, running latest puzzle");
-				puzzle = puzzles.Last();
+				puzzleNumber = puzzles.Count;
 			}
-			else if(int.TryParse(args[0], out int puzzleIndex) && puzzleIndex > 0 && puzzleIndex <= puzzles.Count)
+			else
 			{
-				Console.WriteLine($"Running puzzle #{puzzleIndex:00}");
-				puzzle = puzzles[puzzleIndex - 1];
+				int.TryParse(args[0], out puzzleNumber);
 			}
 
 			// Run puzzle
-			if(puzzle != null)
+			if(puzzleNumber > 0 && puzzleNumber <= puzzles.Count)
 			{
+				IPuzzle puzzle = puzzles[puzzleNumber - 1];
+				Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+				Console.WriteLine($"Running puzzle #{puzzleNumber:00}");
 				Console.WriteLine("-------------------------------------------------------------------------------------------------------");
 				IPuzzleResults result = puzzle.Run();
 
