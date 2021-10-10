@@ -32,11 +32,15 @@ namespace AdventOfCode2020
 		IPuzzleResults Run();
 	}
 
-	public class PuzzleResult<T>
+	public interface IPuzzleAnswer
 	{
-		public PuzzleResult(string label) => Label = label;
+	}
+
+	public class PuzzleRunResult
+	{
+		public PuzzleRunResult(string label) => Label = label;
 		public string Label = string.Empty;
-		public T Answer;
+		public IPuzzleAnswer Answer;
 		public ProfileInfo ProfileInfo;
 		public string ToString(int labelPadding = 0, int tickPadding = 0)
 		{
@@ -60,16 +64,16 @@ namespace AdventOfCode2020
 		void Print();
 	}
 
-	public class PuzzleResults<T> : IPuzzleResults, IEnumerable<PuzzleResult<T>>
+	public class PuzzleResults : IPuzzleResults, IEnumerable<PuzzleRunResult>
 	{
-		List<PuzzleResult<T>> Results = new List<PuzzleResult<T>>();
+		List<PuzzleRunResult> Results = new List<PuzzleRunResult>();
 		
-		public void Add(PuzzleResult<T> Result)
+		public void Add(PuzzleRunResult Result)
 		{
 			Results.Add(Result);
 		}
 		
-		public IEnumerator<PuzzleResult<T>> GetEnumerator()
+		public IEnumerator<PuzzleRunResult> GetEnumerator()
 		{
 			return Results.GetEnumerator();
 		}
@@ -93,15 +97,15 @@ namespace AdventOfCode2020
 
 	class Framework
 	{
-		public static PuzzleResult<T> Run<T>(Func<T> func, bool profile = true)
+		public static PuzzleRunResult Run(Func<IPuzzleAnswer> func, bool profile = true)
 		{
 			return Run(string.Empty, func, profile);
 		}
 
-		public static PuzzleResult<T> Run<T>(string label, Func<T> func, bool profile = true)
+		public static PuzzleRunResult Run(string label, Func<IPuzzleAnswer> func, bool profile = true)
 		{
 			// Setup result and capture answer
-			PuzzleResult<T> result = new PuzzleResult<T>(label);
+			PuzzleRunResult result = new PuzzleRunResult(label);
 			result.Answer = func();
 
 			// Profile N iterations
