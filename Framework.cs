@@ -10,12 +10,14 @@ namespace AdventOfCode2020
 	{
 		public long Ticks = -1;
 		public double Ms = -1.0;
-		public int IterationCount = -1;
-		public override string ToString()
+		public static int IterationCount = 1000;
+		public string ToString(int tickPadding = 0)
 		{
-			long AverageTicks = (IterationCount > 1)? Ticks / IterationCount : Ticks;
-			double AverageMs = (IterationCount > 1)? Ms / IterationCount : Ms;
-			return $"{AverageTicks} ticks | {AverageMs:0.######} ms (averaged over {IterationCount} iterations)";
+			long averageTicks = (IterationCount > 1)? Ticks / IterationCount : Ticks;
+			double averageMs = (IterationCount > 1)? Ms / IterationCount : Ms;
+			string averageTicksString = averageTicks.ToString();
+			string averageTicksStringPadded = tickPadding > 0? averageTicksString.PadLeft(tickPadding) : averageTicksString;
+			return $"{averageTicksStringPadded} ticks | {averageMs:0.######} ms (averaged over {IterationCount} iterations)";
 		}
 	}
 
@@ -30,17 +32,18 @@ namespace AdventOfCode2020
 		public string Label = string.Empty;
 		public T Answer;
 		public ProfileInfo ProfileInfo;
-		public override string ToString()
+		public string ToString(int labelPadding = 0, int tickPadding = 0)
 		{
 			string result = string.Empty;
 			if(!String.IsNullOrEmpty(Label))
 			{
-				result += $"[{Label}] ";
+				string labelPadded = labelPadding > 0? Label.PadLeft(labelPadding) : Label;
+				result += $"[{labelPadded}] ";
 			}
 			result += $"Answer = {Answer}";
 			if(ProfileInfo != null)
 			{
-				result += $" | {ProfileInfo}";
+				result += ProfileInfo.ToString(tickPadding);
 			}
 			return result;
 		}
@@ -72,22 +75,24 @@ namespace AdventOfCode2020
 
 		public void Print()
 		{
+			var labelPadding = Results.Select(r => r.Label.Length).Max();
+			var tickPadding = Results.Select(r => (r.ProfileInfo != null)? r.ProfileInfo.Ticks.ToString().Length : 0).Max();
 			var sortedResults = Results.OrderBy(r => (r.ProfileInfo != null)? r.ProfileInfo.Ticks : 0);
 			foreach(var result in sortedResults)
 			{
-				Console.WriteLine(result);
+				Console.WriteLine(result.ToString(labelPadding, tickPadding));
 			}
 		}
 	}
 
 	class Framework
 	{
-		public static PuzzleResult<T> Run<T>(Func<T> func, bool profile = true, int profileIterationCount = 1000)
+		public static PuzzleResult<T> Run<T>(Func<T> func, bool profile = true)
 		{
-			return Run(string.Empty, func, profile, profileIterationCount);
+			return Run(string.Empty, func, profile);
 		}
 
-		public static PuzzleResult<T> Run<T>(string label, Func<T> func, bool profile = true, int profileIterationCount = 1000)
+		public static PuzzleResult<T> Run<T>(string label, Func<T> func, bool profile = true)
 		{
 			// Setup result and capture answer
 			PuzzleResult<T> result = new PuzzleResult<T>(label);
@@ -97,10 +102,9 @@ namespace AdventOfCode2020
 			if(profile)
 			{
 				ProfileInfo profileInfo = new ProfileInfo();
-				profileInfo.IterationCount = profileIterationCount;
 				Stopwatch sw = new Stopwatch();
 				sw.Start();
-				for (int i = 0; i < profileInfo.IterationCount; i++)
+				for (int i = 0; i < ProfileInfo.IterationCount; i++)
 				{
 					func();
 				}

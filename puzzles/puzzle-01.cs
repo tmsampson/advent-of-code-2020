@@ -16,9 +16,11 @@ namespace AdventOfCode2020
 		{
 			return new PuzzleResults<int>()
 			{
+				// NOTE: Array lookup is currently fastest. I suspect HashSet implementation
+				//       would come out on top if dataset was larger than 200
 				Framework.Run("Naive", Solve_Naive),
-				Framework.Run("Array Lookup", Solve_Array),
-				Framework.Run("HashSet Lookup", Solve_HashSet)
+				Framework.Run("Array lookup", Solve_Array),
+				Framework.Run("HashSet lookup", Solve_HashSet)
 			};
 		}
 
@@ -52,7 +54,7 @@ namespace AdventOfCode2020
 			foreach(int number in numbers)
 			{
 				int other = 2020 - number;
-				if(numbers.Contains(other))
+				if(number != other && numbers.Contains(other))
 				{
 					return number * other;
 				}
