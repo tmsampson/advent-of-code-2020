@@ -28,7 +28,7 @@ namespace AdventOfCode2020
 			}
 
 			// Run puzzle
-			Console.WriteLine("----------------------------------------------------");
+			Console.WriteLine("------------------------------------------------------------------------------------------------");
 			IPuzzleResults result = puzzle.Run();
 
 			// Print results

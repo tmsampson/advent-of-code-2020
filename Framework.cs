@@ -11,13 +11,19 @@ namespace AdventOfCode2020
 		public long Ticks = -1;
 		public double Ms = -1.0;
 		public static int IterationCount = 1000;
+		public long AverageTicks
+		{
+			get { return (IterationCount > 1)? Ticks / IterationCount : Ticks; }
+		}
+		public double AverageMs
+		{
+			get { return (IterationCount > 1)? Ms / IterationCount : Ms; }
+		}
 		public string ToString(int tickPadding = 0)
 		{
-			long averageTicks = (IterationCount > 1)? Ticks / IterationCount : Ticks;
-			double averageMs = (IterationCount > 1)? Ms / IterationCount : Ms;
-			string averageTicksString = averageTicks.ToString();
+			string averageTicksString = AverageTicks.ToString();
 			string averageTicksStringPadded = tickPadding > 0? averageTicksString.PadLeft(tickPadding) : averageTicksString;
-			return $"{averageTicksStringPadded} ticks | {averageMs:0.######} ms (averaged over {IterationCount} iterations)";
+			return $" | {averageTicksStringPadded} ticks | {AverageMs:0.######} ms (results averaged over {IterationCount} iterations)";
 		}
 	}
 
@@ -76,7 +82,7 @@ namespace AdventOfCode2020
 		public void Print()
 		{
 			var labelPadding = Results.Select(r => r.Label.Length).Max();
-			var tickPadding = Results.Select(r => (r.ProfileInfo != null)? r.ProfileInfo.Ticks.ToString().Length : 0).Max();
+			var tickPadding = Results.Select(r => (r.ProfileInfo != null)? r.ProfileInfo.AverageTicks.ToString().Length : 0).Max();
 			var sortedResults = Results.OrderBy(r => (r.ProfileInfo != null)? r.ProfileInfo.Ticks : 0);
 			foreach(var result in sortedResults)
 			{
