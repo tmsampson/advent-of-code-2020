@@ -4,7 +4,7 @@
  Solution for Advent of Code 2020 Challenges https://adventofcode.com/2020
 
 ### Framework
-* Each puzzle solution is a class which implements **IPuzzle**
+* Each puzzle solution is a class implementing **IPuzzle**
 * As such, each puzzle class implements **IPuzzle::Run()** which returns an **IPuzzleResults** collection:
 	* This allows you to try out different solutions/algorithms for each puzzle, each of which is profiled and the results automatically sorted, revealing which solution came out on top!
 * **IPuzzleResults** contains one or more **PuzzleRunResult** objects:
