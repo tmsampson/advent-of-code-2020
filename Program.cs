@@ -8,16 +8,22 @@ namespace AdventOfCode2020
 	{
 		static void Main(string[] args)
 		{
+			// Select challenge
+			Action challenge = null;
 			if(args.Length == 0)
 			{
 				Console.WriteLine("No arguments passed, running last challenge");
-				Challenges.Last();
+				challenge = Challenges.Last();
 			}
 			else if(int.TryParse(args[0], out int challengeIndex) && challengeIndex > 0 && challengeIndex <= Challenges.Count)
 			{
 				Console.WriteLine($"Running challenge #{challengeIndex}");
-				Challenges[challengeIndex - 1]();
+				challenge = Challenges[challengeIndex - 1];
 			}
+
+			// Run challenge
+			Console.WriteLine("----------------------------------------------------");
+			challenge();
 		}
 
 		// Challenge list
