@@ -18,8 +18,8 @@ namespace AdventOfCode2020
 	{
 		private static class Constants
 		{
-			public static string Input = "puzzles/puzzle-01-input.txt";
-			public static int TargetResult = 2020;
+			public static readonly string Input = "puzzles/puzzle-01-input.txt";
+			public static readonly int TargetResult = 2020;
 		}
 
 		public class Answer : IPuzzleAnswer
